@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Embed</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .video-container {
+            width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        iframe {
+            width: 100%;
+            height: 315px; /* Standard height for 16:9 aspect ratio */
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="video-container" id="videoContainer">
+    <h2>IELTS Listening Test</h2>
+    <button onclick="loadNextVideo()">Load Video</button>
+</div>
+
+<script>
+const videoIds = ['y32qINnJ6-8', 'Do_ABSlE6Uw', 'nbWS7CUKaIw'];
+let currentVideoIndex = 0;
+
+function loadNextVideo() {
+    const videoContainer = document.getElementById('videoContainer');
+    const currentVideoId = videoIds[currentVideoIndex];
+
+    const iframe = document.createElement('iframe');
+    iframe.width = '560';
+    iframe.height = '315';
+    iframe.src = `https://www.youtube.com/embed/${currentVideoId}`;
+    iframe.frameBorder = '0';
+    iframe.allowFullscreen = true;
+
+    // Remove the existing iframe (if any) before adding the new one
+    const existingIframe = videoContainer.querySelector('iframe');
+    if (existingIframe) {
+        videoContainer.removeChild(existingIframe);
+    }
+
+    videoContainer.appendChild(iframe);
+
+    // Increment the current video index for the next click
+    currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
+}
+</script>
+
+</body>
+</html>

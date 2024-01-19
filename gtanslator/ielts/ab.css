@@ -1,0 +1,239 @@
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.wrapper {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing {
+    width: 29ch;
+    animation: typing 1s steps(13), blink .3s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 1px solid;
+    font-family: monospace;
+    font-size: 2em;
+    border: border-box;
+}
+
+.responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.thumb-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* задаёт высоту контейнера для 16:9 (если 4:3 — поставьте 75%) */
+    height: 0;
+    overflow: hidden;
+}
+
+.thumb-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-width: 0;
+    outline-width: 0;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+:root {
+    --bg-color-hsl: 59, 3%, 94%;
+    --bg-color: hsl(var(--bg-color-hsl));
+    --bg-color-translucent: hsla(var(--bg-color-hsl), 0.95);
+    --bg-color-highlight: hsl(204, 28%, 41%);
+    --color-text: hsl(195, 14%, 16%);
+    --color-text-highlight: hsl(192, 14%, 0%);
+    --page-width: 90ch;
+    --paragraph-font-size: min(max(1.2rem, 4vw), 1.4rem);
+    --header-font-size: min(max(2rem, 8vw), 4rem);
+    --space: 2rem;
+    --padding: 8vmin;
+    --duration: 1s;
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.dark-mode {
+    --bg-color-hsl: 0, 0%, 7%;
+    --bg-color: hsl(var(--bg-color-hsl));
+    --bg-color-translucent: hsla(var(--bg-color-hsl), 0.95);
+    --bg-color-highlight: hsl(238, 70%, 40%);
+    --color-text: hsl(0, 0%, 80%);
+    --color-text-highlight: hsl(0, 0%, 100%);
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lora", sans-serif;
+    font-weight: 400;
+    color: var(--color-text);
+    background-color: var(--bg-color);
+    -webkit-transition: background calc(var(--duration) / 4) var(--ease);
+    transition: background calc(var(--duration) / 4) var(--ease);
+}
+
+header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: calc(var(--space) / 2) var(--padding);
+    width: 100%;
+    max-width: var(--page-width);
+    background-color: var(--bg-color-translucent);
+    -webkit-transition: background calc(var(--duration) / 4) var(--ease);
+    transition: background calc(var(--duration) / 4) var(--ease);
+}
+
+header .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+header .wrapper>*+* {
+    margin-left: 4px;
+}
+
+select {
+    font-family: inherit;
+    font-size: 16px;
+}
+
+label {
+    font-size: 0.8rem;
+}
+
+.body {
+    color: hsl(192, 14%, 20%);
+}
+
+.banner {
+    display: block;
+    margin: 0 auto;
+    color: #444444;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.btn {
+    color: hsl(192, 14%, 20%);
+    text-decoration: none;
+    background-position: center center;
+    border-radius: 20px;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: transparent;
+    padding: 12px 17px;
+}
+
+main {
+    margin: 12rem auto;
+    padding: 0 var(--padding);
+    max-width: var(--page-width);
+}
+
+h1 {
+    font-size: var(--header-font-size);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4rem;
+}
+
+p {
+    margin: 2rem 0;
+    font-size: var(--paragraph-font-size);
+    line-height: 1.7;
+}
+
+.text-highlight {
+    all: unset;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    -webkit-transition: color calc(var(--duration) / 4) var(--ease), background-color calc(var(--duration) / 4) var(--ease), background-size var(--duration) var(--ease);
+    transition: color calc(var(--duration) / 4) var(--ease), background-color calc(var(--duration) / 4) var(--ease), background-size var(--duration) var(--ease);
+}
+
+.text-highlight.active {
+    color: var(--color-text-highlight);
+    background-size: 100% 100%;
+}
+
+[data-highlight="background"] .text-highlight {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--bg-color-highlight)), to(var(--bg-color-highlight)));
+    background-image: linear-gradient(var(--bg-color-highlight), var(--bg-color-highlight));
+}
+
+[data-highlight="half"] .text-highlight {
+    --line-size: 0.5em;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(var(--bg-color-highlight)));
+    background-image: linear-gradient(transparent calc(100% - var(--line-size)), var(--bg-color-highlight) var(--line-size));
+}
+
+[data-highlight="underline"] .text-highlight {
+    --line-size: 0.15em;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(var(--color-text)));
+    background-image: linear-gradient(transparent calc(100% - var(--line-size)), var(--color-text) var(--line-size));
+}
+
+.text-highlight::before,
+.text-highlight::after {
+    position: absolute;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.text-highlight::before {
+    content: " [highlight start] ";
+}
+
+.text-highlight::after {
+    content: " [highlight end] ";
+}
+
+
+/*# sourceMappingURL=login.css.map */

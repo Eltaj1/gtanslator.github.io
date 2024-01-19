@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>JceLife</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ab.css">
+
+</head>
+
+<nav>
+    <a href="/index.html">Home</a>
+    <a href="/index.html">Translator</a>
+    <a href="/about/about.html">About</a>
+    <a href="/words/words.html">Words</a>
+    <a href="#videos">Videos</a>
+</nav>
+
+<body>
+    <style>
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: var(--bg-color);
+            padding: 10px;
+        }
+
+        nav a {
+            color: #262626;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: blue;
+        }
+        .blue {
+            color: blue;
+        }
+        
+        .orange {
+            color: blue;
+        }
+        a {
+            color: red;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 600px auto;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #getQuestionBtn {
+            background-color: blue;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            justify-content: center;
+        }
+        #prompts {
+            font-style: italic;
+        }
+        #image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #generatePromptBtn {
+            background-color: blue;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px auto;
+            cursor: pointer;
+        }
+        #generateTask1Btn {
+            background-color: blue;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #description {
+            margin-bottom: 15px;
+        }
+        #chart {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            display: none; /* Initially hide the chart */
+        }
+        button {
+            background-color: blue;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .video-container {
+            width: 600px auto;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        iframe {
+            width: 100%;
+            height: 315px; /* Standard height for 16:9 aspect ratio */
+            margin-top: 20px;
+        }
+    </style>
+    <div class="wrapper">
+        <div class="typing">
+            <h2>IELTS is <span class="blue">NOT</span> hard &#128509;</h2>
+        </div>
+    </div>
+    <main>
+        <h1>How to Pass <span class="orange">IELTS?</span></h1>
+        <p></p>
+        <div class="thumb-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/uBy0iUktRkw?si=tMpvZQmNZELNasCp" frameborder="0" allowfullscreen></iframe>
+
+        </div>
+        <p1>Видео взято с канала "E2 IELTS".</p1>
+        <h1></h1>
+        </div>
+        <p></p>
+    
+            <p></p>
+        </center>
+        <p><mark>How to pass IELTS - 7 Tips You Must Know!</mark></p> 
+        <p>1. Stop being a perfectionist</p>
+        <p>2. Do not spend too much time on one question</p>
+        <p>3. Use the flexibility in the IELTS tests to go back & forth through questions</p>
+        <p>4. Take your IELTS preparation seriously</p>
+        <p>5. Meditate two days before the test</p>
+        <p>6. Think positively on test day and exude confidence</p>
+        <p>7. Be constantly reading, actively listening & speaking in English</p>
+        <center>
+            <p><img src="img/practice.png" alt="Nature" class="responsive"></p>
+        </center>
+        <p>All you need is ample preparation and these 7 key essential tips to get you into high gear for the IELTS test!</p>
+        <h1><span class="orange">S</span>peaking part!</h1>
+        <p>Tips for IELTS <a href="https://www.studocu.com/vn/document/hoc-vien-ngoai-giao-viet-nam/tieng-anh-ngoai-giao/ielts-speaking-by-adam-smithpdf-by-adam-smith-z-lib/38799503">Speaking</a> (tap on "Speaking")</p>
+        <div id="question-container">
+            <div id="container">
+                <h2>IELTS Speaking Test. Part 1.</h2>
+                <p id="question">Click the button to get a random question:</p>
+                <button id="getQuestionBtn" onclick="askRandomQuestion()">Get Question</button>
+            </div>
+            
+            <script>
+                // Sample IELTS speaking questions
+                const questions = [
+                    "Can you tell me about your hometown?",
+                    "Describe a person you admire.",
+                    "How does social media impact our daily lives?",
+                    "Talk about a memorable trip you have taken.",
+                    "Discuss the role of technology in education.",
+                    "What is your opinion on renewable energy?",
+                    "Describe a book or movie that influenced you.",
+                    "Talk about a hobby you enjoy.",
+                    "How do you handle stress in your daily life?",
+                    "Discuss the role of art in society.",
+                    // Add more questions as needed
+                ];
+            
+                function getRandomQuestion() {
+                    // Generate a random index to select a random question
+                    const randomIndex = Math.floor(Math.random() * questions.length);
+                    return questions[randomIndex];
+                }
+            
+                function askRandomQuestion() {
+                    // Get the question container element
+                    const questionContainer = document.getElementById('question-container');
+                    
+                    // Get a random question
+                    const randomQuestion = getRandomQuestion();
+                    
+                    // Display the random question
+                    document.getElementById('question').textContent = randomQuestion;
+                }
+            </script>
+
+        <p><span class="orange">Expand Answers:</span> Provide detailed responses by giving reasons and examples. This showcases your language proficiency and helps you stand out.</p>
+            <div id="container">
+                <h2>IELTS Speaking Test. Part 2.</h2>
+                <p id="question">Click the button to get a Part 2 cue card:</p>
+                <button id="getQuestionBtn" onclick="askPart2Question()">Get Part 2 Cue Card</button>
+                <button id="repeatQuestionBtn" onclick="repeatPart2Question()" style="display: none;">Repeat Question</button>
+                <p id="prompts"></p>
+            </div>
+            
+            <script>
+// Sample IELTS speaking Part 2 cue cards with prompts
+const part2Questions = [
+    {
+        topic: "Describe a memorable event in your life.",
+        prompts: [
+            "When and where did it happen?",
+            "What was the event?",
+            "Why was it memorable to you?"
+        ]
+    },
+    {
+        topic: "Talk about a piece of technology you find useful.",
+        prompts: [
+            "What is the technology?",
+            "How do you use it?",
+            "Why do you find it useful?"
+        ]
+    },
+    {
+        topic: "Describe a place you would like to visit in the future.",
+        prompts: [
+            "Where is the place?",
+            "Why do you want to visit it?",
+            "What would you do there?"
+        ]
+    },
+    {
+        topic: "Discuss a hobby or activity you enjoy in your free time.",
+        prompts: [
+            "What is the hobby or activity?",
+            "How did you start doing it?",
+            "Why do you enjoy it?"
+        ]
+    },
+    {
+        topic: "Describe a famous person you admire.",
+        prompts: [
+            "Who is the person?",
+            "Why do you admire them?",
+            "What qualities do they have?"
+        ]
+    },
+    {
+        topic: "Talk about an important decision you made in your life.",
+        prompts: [
+            "What was the decision?",
+            "Why was it important?",
+            "How did it impact your life?"
+        ]
+    },
+    {
+        topic: "Discuss a time when you had to overcome a challenge.",
+        prompts: [
+            "What was the challenge?",
+            "How did you overcome it?",
+            "What did you learn from the experience?"
+        ]
+    },
+    {
+        topic: "Describe an interesting conversation you had with someone recently.",
+        prompts: [
+            "Who was the person?",
+            "What was the conversation about?",
+            "Why was it interesting to you?"
+        ]
+    },
+    {
+        topic: "Talk about a cultural event or festival you attended.",
+        prompts: [
+            "What was the event or festival?",
+            "How did you celebrate?",
+            "Why was it significant to you?"
+        ]
+    },
+    {
+        topic: "Discuss a change you would like to make in your local area.",
+        prompts: [
+            "What change would you like to make?",
+            "Why is it necessary?",
+            "How do you plan to initiate the change?"
+        ]
+    },
+    // Add more Part 2 cue cards with prompts as needed
+];
+
+            
+                function getRandomPart2Question() {
+                    // Generate a random index to select a random Part 2 cue card
+                    const randomIndex = Math.floor(Math.random() * part2Questions.length);
+                    return part2Questions[randomIndex];
+                }
+            
+                function askPart2Question() {
+                    // Get the question container element
+                    const questionContainer = document.getElementById('container');
+                    // Get a random Part 2 cue card
+                    const randomPart2Question = getRandomPart2Question();
+                    
+                    // Display the topic of the Part 2 cue card
+                    document.getElementById('question').textContent = `Part 2 Topic: ${randomPart2Question.topic}`;
+                    // Display the prompts
+                    const promptsElement = document.getElementById('prompts');
+                    promptsElement.textContent = `Prompts:\n${randomPart2Question.prompts.join('\n')}`;
+            
+                    // Use SpeechSynthesis API to read the topic and prompts aloud
+                    const synth = window.speechSynthesis;
+                    // Read the topic
+                    const utteranceTopic = new SpeechSynthesisUtterance(randomPart2Question.topic);
+                    synth.speak(utteranceTopic);
+            
+                    // Read the prompts
+                    const utterancePrompts = new SpeechSynthesisUtterance(randomPart2Question.prompts.join('. '));
+                    synth.speak(utterancePrompts);
+                    // Show the "Repeat Question" button
+}
+                    // Show the "Repeat Question" button
+
+            </script>
+        <p><span class="orange">Manage Time:</span> <mark>effectively</mark> use the one-minute preparation time to organize your thoughts. This ensures a well-structured and coherent two-minute response.</p>
+
+        <div id="container">
+            <h2>IELTS Speaking Test. Part 3.</h2>
+            <p id="question">Click the button to get Part 3 questions:</p>
+            <button id="getQuestionBtn" onclick="askPart3Questions()">Get Part 3 Questions</button>
+            <p id="prompts"></p>
+            <pre id="questionsText"></pre>
+        </div>
+        
+        <script>
+            // Sample IELTS speaking Part 3 questions
+            const part3Questions = [
+                {
+                    topic: "Memorable Event",
+                    questions: [
+                        "How do important events in life impact people's behavior?",
+                        "Do you think events from the past influence future decisions?",
+                        "In what ways can technology help preserve memories of significant events?"
+                    ]
+                },
+                {
+                    topic: "Useful Technology",
+                    questions: [
+                        "How has technology changed people's lives in recent years?",
+                        "What are the advantages and disadvantages of relying on technology?",
+                        "In what ways can technology improve communication?"
+                    ]
+                },
+                {
+                    topic: "Future Travel Plans",
+                    questions: [
+                        "How do travel experiences contribute to personal growth?",
+                        "What factors influence people's choice of travel destinations?",
+                        "In what ways can technology make travel more convenient?"
+                    ]
+                },
+                {
+                    topic: "Enjoyable Free Time Activity",
+                    questions: [
+                        "Why is it important for people to have hobbies or activities they enjoy?",
+                        "Do you think people's choice of leisure activities reflects their personality?",
+                        "In what ways can leisure activities contribute to a person's well-being?"
+                    ]
+                },
+                {
+                    topic: "Admired Famous Person",
+                    questions: [
+                        "How do celebrities influence society's values and behaviors?",
+                        "What qualities should a person possess to be considered admirable?",
+                        "Do you think fame always comes with a cost?"
+                    ]
+                },
+                // Add more Part 3 questions as needed
+            ];
+        
+            function getRandomPart3Question() {
+                // Generate a random index to select a random Part 3 question set
+                const randomIndex = Math.floor(Math.random() * part3Questions.length);
+                return part3Questions[randomIndex];
+            }
+        
+            function askPart3Questions() {
+                // Get the question container element
+                const questionContainer = document.getElementById('container');
+        
+                // Get a random Part 3 question set
+                const randomPart3Questions = getRandomPart3Question();
+        
+                // Display the Part 3 topic
+                document.getElementById('question').textContent = `Part 3 Topic: ${randomPart3Questions.topic}`;
+        
+                // Display the questions in the text area
+                const questionsTextElement = document.getElementById('questionsText');
+                questionsTextElement.textContent = randomPart3Questions.questions.join('\n');
+        
+                // Use SpeechSynthesis API to read the topic and questions aloud
+                const synth = window.speechSynthesis;
+        
+                // Read the topic
+                const utteranceTopic = new SpeechSynthesisUtterance(`Part 3 Topic: ${randomPart3Questions.topic}`);
+                synth.speak(utteranceTopic);
+        
+                // Read the questions
+                const utteranceQuestions = new SpeechSynthesisUtterance(randomPart3Questions.questions.join('. '));
+                synth.speak(utteranceQuestions);
+            }
+        </script>
+        
+        <p><span class="orange">Critical Thinking:</span> <mark>practice</mark> critical thinking to articulate well-reasoned opinions on a variety of topics. Engage in thoughtful discussions to demonstrate depth of thought.</p>
+        <div class="thumb-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/SMCwpfJMdMo?si=zsCTJxDTKSgf7FBw" frameborder="0" allowfullscreen></iframe>
+
+        </div>
+        <p1>Видео взято с канала "IELTS Advantage".</p1>
+        <h1></h1>
+        </div>
+        <p>Remember, each part contributes to your overall speaking score, so consistent preparation across all sections is crucial.</p>
+        <div id="container">
+            <h2>IELTS Writing Task 1</h2>
+            <p id="intro">You should spend about 20 minutes on this task. Summarise the information by selecting and reporting the main features and make comparisons where relevant. Write at least 150 words.</p>
+            <img id="chart" src="" alt="Chart">
+            <p id="description"></p>
+            <button id="generateTask1Btn" onclick="generateTask1()">Generate Task 1</button>
+        </div>
+        
+        <script>
+            // Sample data for Task 1 with associated chart images
+            const task1Data = [
+                {
+                    chartImage: "https://www.ielts-writing.info/images/graphs/IELTS_Writing_Task_1_LineGraph_202.png",
+                    description: "The graph below shows the average monthly change in the prices of three metals during 2014.",
+                },
+                {
+                    chartImage: "https://www.ielts-writing.info/images/graphs/IELTS_Writing_Task_1_BarChart_201.png",
+                    description: "The chart shows the average number of hours each day that Chinese, American, Turkish and Brazilian tourists spent doing leisure activities while on holiday in Greece in August 2019.",
+                }
+                // Add more Task 1 data with corresponding chart images as needed
+            ];
+        
+            function getRandomTask1() {
+                // Generate a random index to select a random Task 1 data
+                const randomIndex = Math.floor(Math.random() * task1Data.length);
+                return task1Data[randomIndex];
+            }
+        
+            function generateTask1() {
+                // Get the description and chart elements
+                const descriptionElement = document.getElementById('description');
+                const chartElement = document.getElementById('chart');
+        
+                // Get random Task 1 data
+                const randomTask1 = getRandomTask1();
+        
+                // Display the description and associated chart
+                descriptionElement.textContent = randomTask1.description;
+                chartElement.src = randomTask1.chartImage;
+                chartElement.alt = "Chart";
+        
+                // Ensure the chart is visible
+                chartElement.style.display = 'block';
+            }
+        </script>
+        
+        <h1><span class="orange">IELTS </span>Writing Task</h1>
+        <div id="container">
+            <h2>IELTS Writing Task 2</h2>
+            <p id="intro">Welcome to the IELTS Writing Task 2 Prompt Generator. You must write 250 words or more.</p>
+            <img id="image" src="#" alt="Topic Image">
+            <p id="prompt"></p>
+            <button id="generatePromptBtn" onclick="generatePrompt()">Generate Prompt</button>
+        </div>
+        
+        <script>
+            // Sample IELTS Writing Task 2 prompts with associated images
+            const writingPrompts = [
+                {
+                    prompt: "Some people believe that money is the most important factor for achieving happiness. Do you agree or disagree?",
+                    imageUrl: "https://source.unsplash.com/300x200/?money,happiness" // Replace with actual image URL
+                },
+                {
+                    prompt: "In many countries, the gap between the rich and the poor is widening. What problems does this cause? What solutions can you suggest?",
+                    imageUrl: "https://source.unsplash.com/300x200/?wealthy,poor" // Replace with actual image URL
+                },
+                {
+                    prompt: "Some people argue that technology is making people's lives simpler and more efficient, while others believe it has negative effects on society. Discuss both views and give your own opinion.",
+                    imageUrl: "https://source.unsplash.com/300x200/?technology,society" // Replace with actual image URL
+                },
+                // Add more prompts with corresponding image URLs as needed
+            ];
+        
+            function getRandomPrompt() {
+                // Generate a random index to select a random writing prompt
+                const randomIndex = Math.floor(Math.random() * writingPrompts.length);
+                return writingPrompts[randomIndex];
+            }
+        
+            function generatePrompt() {
+                // Get the intro, prompt, and image container elements
+                const introContainer = document.getElementById('intro');
+                const promptContainer = document.getElementById('prompt');
+                const imageContainer = document.getElementById('image');
+                
+                // Get a random Writing Task 2 prompt
+                const randomPrompt = getRandomPrompt();
+                
+                // Display the intro, prompt, and associated image
+                introContainer.textContent = "You should spend around 40 minutes on this part of the test.";
+                promptContainer.textContent = `Task 2 Prompt: ${randomPrompt.prompt}`;
+                imageContainer.src = randomPrompt.imageUrl;
+                imageContainer.alt = "Topic Image";
+            }
+        </script>
+        <p><span class="orange">C</span>learly express your ideas, support them with relevant examples, and pay attention to grammar and vocabulary to enhance the overall quality of your written response.</p>
+        <div class="thumb-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/FVqSiFUVX78?si=ZMcHAOyoMAbAOFYi" frameborder="0" allowfullscreen></iframe>
+
+        </div>
+        <p1>Видео взято с канала "E2 IELTS".</p1>
+        <h1></h1>
+        </div>
+        <p>Develop a well-structured essay by introducing your main ideas in the introduction, providing detailed supporting points in the body paragraphs, and summarizing your key points in a strong conclusion, showcasing a range of vocabulary and grammatical structures for a higher score.</p>
+        <h1><span class="orange">L</span>istening Test</h1>
+        <div class="video-container" id="videoContainer">
+            <center>
+            <h2>IELTS Listening Test</h2>
+            <button onclick="loadNextVideo()">Load Video</button>
+        </center>
+        </div>
+        
+        <script>
+        const videoIds = ['y32qINnJ6-8', 'Do_ABSlE6Uw', 'nbWS7CUKaIw'];
+        let currentVideoIndex = 0;
+        
+        function loadNextVideo() {
+            const videoContainer = document.getElementById('videoContainer');
+            const currentVideoId = videoIds[currentVideoIndex];
+        
+            const iframe = document.createElement('iframe');
+            iframe.width = '560';
+            iframe.height = '315';
+            iframe.src = `https://www.youtube.com/embed/${currentVideoId}`;
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+        
+            // Remove the existing iframe (if any) before adding the new one
+            const existingIframe = videoContainer.querySelector('iframe');
+            if (existingIframe) {
+                videoContainer.removeChild(existingIframe);
+            }
+        
+            videoContainer.appendChild(iframe);
+        
+            // Increment the current video index for the next click
+            currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
+        }
+        </script>
+        <p>Test takers often make more mistakes in the IELTS Listening test because recordings are only played once. The thought of not being able to re-listen to a recording might seem nerve-racking, but if you put these tips into action, you’ll be in a much better place to ace your test.</p>
+        <center>
+        <div class="container">
+            <div class="py-5 text-center">&copy;<span class="blue">Jce</span>Life 🗽
+              </script>
+            </center>
+    </main>
+<script src="js/test.js"></script>
+</body>
+</html>
