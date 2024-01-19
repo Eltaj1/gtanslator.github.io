@@ -1,0 +1,41 @@
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-color);
+    padding: 10px;
+}
+
+nav a {
+    color: #262626;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: blue;
+}
+body {
+    font-family: "Lora", sans-serif;
+    font-weight: 400;
+    color: var(--color-text);
+    background-color: var(--bg-color);
+    -webkit-transition: background calc(var(--duration) / 4) var(--ease);
+    transition: background calc(var(--duration) / 4) var(--ease);
+}
+h1 {
+    font-size: var(--header-font-size);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4rem;
+}
+li,
+p {
+    margin: 2rem 0;
+    font-size: var(--paragraph-font-size);
+    line-height: 1.7;
+}
+.blue {
+    color: blue;
+}
